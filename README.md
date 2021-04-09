@@ -1,9 +1,11 @@
 # JobsPortal
 
-Para comenzar a trabajar con el front end es necesario ingresar a la carpeta ./front-end y escribir
+Para comenzar a trabajar con el front-end: 
 
-npm install 
+1 ```cd ./front-end``` -> *Para ingresar a la carpeta.*
 
-Esperar que termine la instalacion. Y correr el servidor con 
+2 ```npm install``` -> *Para instalar las dependencias*
 
-npm start
+Una vez terminada la instalacion: 
+
+- ```npm start``` -> *Para correr el servidor*
