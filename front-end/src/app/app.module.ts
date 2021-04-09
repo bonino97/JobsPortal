@@ -14,38 +14,32 @@ import { AppComponent } from 'app/app.component';
 import { appRoutes } from 'app/app.routing';
 
 const routerConfig: ExtraOptions = {
-    scrollPositionRestoration: 'enabled',
-    preloadingStrategy       : PreloadAllModules,
-    relativeLinkResolution   : 'legacy'
+  scrollPositionRestoration: 'enabled',
+  preloadingStrategy: PreloadAllModules,
+  relativeLinkResolution: 'legacy',
 };
 
 @NgModule({
-    declarations: [
-        AppComponent
-    ],
-    imports     : [
-        BrowserModule,
-        BrowserAnimationsModule,
-        RouterModule.forRoot(appRoutes, routerConfig),
+  declarations: [AppComponent],
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    RouterModule.forRoot(appRoutes, routerConfig),
 
-        // Treo & Treo Mock API
-        TreoModule,
-        TreoConfigModule.forRoot(appConfig),
-        TreoMockApiModule.forRoot(mockApiServices),
+    // Treo & Treo Mock API
+    TreoModule,
+    TreoConfigModule.forRoot(appConfig),
+    TreoMockApiModule.forRoot(mockApiServices),
 
-        // Core
-        CoreModule,
+    // Core
+    CoreModule,
 
-        // Layout
-        LayoutModule,
+    // Layout
+    LayoutModule,
 
-        // 3rd party modules
-        MarkdownModule.forRoot({})
-    ],
-    bootstrap   : [
-        AppComponent
-    ]
+    // 3rd party modules
+    MarkdownModule.forRoot({}),
+  ],
+  bootstrap: [AppComponent],
 })
-export class AppModule
-{
-}
+export class AppModule {}
