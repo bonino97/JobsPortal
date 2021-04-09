@@ -2,10 +2,10 @@
 
 ###### Para comenzar a trabajar con el **front-end**: 
 
-- ```cd ./front-end``` -> *Para ingresar a la carpeta.*
+1. ```cd ./front-end``` -> *Para ingresar a la carpeta.*
 
-- ```npm install``` -> *Para instalar las dependencias*
+2. ```npm install``` -> *Para instalar las dependencias*
 
 Una vez terminada la instalacion: 
 
-- ```npm start``` -> *Para correr el servidor*
+3. ```npm start``` -> *Para correr el servidor*
