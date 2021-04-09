@@ -5,14 +5,7 @@ import { ExampleComponent } from 'app/modules/admin/example/example.component';
 import { exampleRoutes } from 'app/modules/admin/example/example.routing';
 
 @NgModule({
-    declarations: [
-        ExampleComponent
-    ],
-    imports     : [
-        RouterModule.forChild(exampleRoutes),
-        SharedModule
-    ]
+  declarations: [ExampleComponent],
+  imports: [RouterModule.forChild(exampleRoutes), SharedModule],
 })
-export class ExampleModule
-{
-}
+export class ExampleModule {}
