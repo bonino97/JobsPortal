@@ -2,12 +2,23 @@ import http from 'http';
 import express from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
+import mongoose from 'mongoose';
+
 import logging from './config/logging';
 import config from './config/config';
-import sampleRoutes from './routes/sample';
+
+/* Routes Import */
+import indexRoutes from './routes/index';
+import bookRoutes from './routes/book';
 
 const NAMESPACE = 'Server';
 const app = express();
+
+/* Connect to MongoDB */
+mongoose
+    .connect(config.mongo.url, config.mongo.options)
+    .then(() => logging.info(NAMESPACE, `DATABASE [Online] => Name: ${config.mongo.dbName}`))
+    .catch((error) => logging.error(NAMESPACE, error.message, error));
 
 /* Logging the request */
 
@@ -28,7 +39,8 @@ app.use(bodyParser.json());
 app.use(cors());
 
 /* Routes */
-app.use('/sample', sampleRoutes);
+app.use('/', indexRoutes);
+app.use('/book', bookRoutes);
 
 /* Error handling */
 app.use((req, res, next) => {
