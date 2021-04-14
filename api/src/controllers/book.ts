@@ -50,7 +50,9 @@ const getAllBooks = (req: Request, res: Response, next: NextFunction) => {
         });
 };
 
-export default {
+const bookMethods = {
     getAllBooks,
     createBook
 };
+
+export default bookMethods;
