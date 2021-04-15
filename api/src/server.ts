@@ -9,7 +9,6 @@ import config from './config/config';
 
 /* Routes Import */
 import indexRoutes from './routes/index';
-import bookRoutes from './routes/book';
 import userRoutes from './routes/user';
 import authRoutes from './routes/auth';
 
@@ -42,7 +41,6 @@ app.use(cors());
 
 /* Routes */
 app.use('/', indexRoutes);
-app.use('/book', bookRoutes);
 app.use('/user', userRoutes);
 app.use('/auth', authRoutes);
 

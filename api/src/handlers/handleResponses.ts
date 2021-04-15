@@ -2,20 +2,24 @@ const serverErrorRespMsg = {
     ERROR_OCCURRED: 'We have an unexpected error. Please, ' + 'contant an administrator if this problem persits.'
 };
 
-const bookMessages = {
-    BOOK_CREATED_SUCCESS: 'Book created Succesfully...'
-};
-
 const authMessages = {
     AUTHORIZED: 'Authorized.',
-    HASH_ERROR: 'An error ocurred saving password.'
+    UNAUTHORIZED: 'Unauthorized.',
+    HASH_ERROR: 'An error ocurred saving password...',
+    VERIFY_JWT_ERROR: 'An error ocurred verifying Token...',
+    REGISTER_SUCCESS: 'User registered successfully...',
+    REGISTER_ERROR: 'An error ocurred creating user...',
+    LOGIN_SUCCESS: 'User authenticated successfully...',
+    LOGIN_ERROR: 'An error ocurred authenticating user...',
+    SIGN_TOKEN_ERROR: 'Unable to sign token.',
+    INCORRECT_PASSWORD: 'Incorrect password...',
+    UNEXISTENT_USER: 'User not found...'
 };
 
-const userMessages = {};
+const userMessages = { GET_USERS: 'Users loaded Succesfully...', GET_USERS_ERROR: 'An error ocurred loading users...' };
 
 const responseMessages: any = {
     ...serverErrorRespMsg,
-    ...bookMessages,
     ...authMessages,
     ...userMessages
 };
