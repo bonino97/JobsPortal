@@ -31,7 +31,8 @@ const register = (req: Request, res: Response) => {
             email,
             password: hash,
             firstName,
-            lastName
+            lastName,
+            active: false
         });
 
         sendMail({

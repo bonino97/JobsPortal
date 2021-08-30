@@ -18,4 +18,5 @@ export default interface IUser extends Document {
     expires: Date;
     createdAt: Date;
     updatedAt: Date;
+    active: boolean;
 }
