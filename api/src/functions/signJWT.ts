@@ -8,7 +8,7 @@ import IUser from '../interfaces/user';
 
 const NAMESPACE = 'Functions';
 
-const signJWT = (user: IUser, callback: (error: Error | null, token: string | null) => void): void => {
+const signJWT = (user: IUser, callback: (error: Error | any, token: string | null) => void): void => {
     const timeSinceEpoch = new Date().getTime();
     const expirationTime = timeSinceEpoch + Number(config.server.token.expireTime) * 100000;
     const expirationTimeInSeconds = Math.floor(expirationTime / 1000);
@@ -31,7 +31,7 @@ const signJWT = (user: IUser, callback: (error: Error | null, token: string | nu
                 }
             }
         );
-    } catch (error) {
+    } catch (error: any) {
         logging.error(NAMESPACE, error.message, error);
         callback(error, null);
     }

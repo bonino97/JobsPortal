@@ -29,7 +29,7 @@ const MONGO = {
 };
 
 const SERVER_HOSTNAME = process.env.SERVER_HOSTNAME || 'localhost';
-const SERVER_PORT = process.env.SERVER_PORT || 3000;
+const SERVER_PORT = process.env.SERVER_PORT || 3002;
 
 const SERVER_TOKEN_EXPIRETIME = process.env.SERVER_TOKEN_EXPIRETIME || 21600;
 const SERVER_TOKEN_ISSUER = process.env.SERVER_TOKEN_ISSUER || 'jwt-issuer';
@@ -45,9 +45,17 @@ const SERVER = {
     }
 };
 
+const EMAIL_CONFIG = {
+    user: "a9c799cf681af1",
+    pass: "bc8a20269d161e",
+    host: 'smtp.mailtrap.io',
+    port: '2525'
+};
+
 const config = {
     mongo: MONGO,
-    server: SERVER
+    server: SERVER,
+    email: EMAIL_CONFIG
 };
 
 export default config;
