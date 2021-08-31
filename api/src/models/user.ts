@@ -27,7 +27,7 @@ const UserSchema: Schema = new Schema(
         image: String,
         token: String,
         expires: Date,
-        active: Boolean
+        isActive: Boolean
     },
     {
         timestamps: true

@@ -9,5 +9,6 @@ const router = express.Router();
 router.get('/validate', extractJWT, authController.validateToken);
 router.post('/register', authController.register);
 router.post('/login', authController.login);
+router.post('/confirm-account', authController.confirmAccount);
 
 export = router;
