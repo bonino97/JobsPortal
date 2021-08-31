@@ -10,10 +10,10 @@ import User from '../models/user';
 import IUser from '../interfaces/user';
 
 import sendMail from '../helpers/email';
-import { registerEmailTemplate } from '../handlers/registerEmailTemplate';
+import { registerEmailTemplate } from '../helpers/registerEmailTemplate';
 
 import { v4 as uuid } from 'uuid';
-import { resetPasswordEmailTemplate } from '../handlers/resetPasswordEmailTemplate';
+import { resetPasswordEmailTemplate } from '../helpers/resetPasswordEmailTemplate';
 
 const NAMESPACE = 'Auth Controller';
 
