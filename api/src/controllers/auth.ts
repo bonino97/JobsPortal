@@ -35,7 +35,6 @@ const register = async (req: Request, res: Response) => {
             lastName,
             isActive: false
         });
-
         sendMail(registerEmailTemplate(user));
 
         return user
@@ -70,7 +69,7 @@ const confirmAccount = async (req: Request, res: Response) => {
     try {
         logging.info(NAMESPACE, 'Activate User Method');
         const { id, password } = req.body;
-        const user = await User.findById(id);
+        const user = await User.findOne({ _id: id });
         if (!user) return sendResponse(res, 'UNEXISTENT_USER', 401);
         if (!bcrypt.compareSync(password, user.password)) return sendResponse(res, 'INCORRECT_PASSWORD', 401);
         user.isActive = true;
