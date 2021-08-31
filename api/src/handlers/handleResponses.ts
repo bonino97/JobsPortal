@@ -19,7 +19,10 @@ const authMessages = {
     FORGOT_PASSWORD_SUCCESS: 'If your email exists, you will receive a password recovery link in few seconds.',
     FORGOT_PASSWORD_ERROR: 'An error occurred resetting password.',
     USER_ACTIVED_SUCCESS: 'User actived successfully.',
-    USER_ACTIVED_ERROR: 'An error ocurred activating user.'
+    USER_ACTIVED_ERROR: 'An error ocurred activating user.',
+    RESET_PASSWORD_EXPIRED: 'Invalid or expired Token, try to reset password again.',
+    RESET_PASSWORD_SUCCESS: 'Your password was succesfully modified.',
+    RESET_PASSWORD_ERROR: 'An error ocurred resseting password.'
 };
 
 const userMessages = { GET_USERS: 'Users loaded Succesfully.', GET_USERS_ERROR: 'An error ocurred loading users.' };

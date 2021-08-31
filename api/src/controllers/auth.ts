@@ -16,6 +16,7 @@ import { v4 as uuid } from 'uuid';
 import { resetPasswordEmailTemplate } from '../helpers/resetPasswordEmailTemplate';
 
 const NAMESPACE = 'Auth Controller';
+const SALT_ROUNDS = 10;
 
 const validateToken = (req: Request, res: Response, next: NextFunction) => {
     logging.info(NAMESPACE, 'ValidateToken Method - Validate JWT');
@@ -25,7 +26,7 @@ const validateToken = (req: Request, res: Response, next: NextFunction) => {
 const register = async (req: Request, res: Response) => {
     logging.info(NAMESPACE, `Register Method`);
     let { email, password, firstName, lastName } = req.body;
-    bcrypt.hash(password, 10, async (error: Error, hash: any) => {
+    bcrypt.hash(password, SALT_ROUNDS, async (error: Error, hash: any) => {
         if (error) sendResponse(res, 'HASH_ERROR', 500, { data: error });
 
         const userExists = await User.findOne({ email });
@@ -86,20 +87,38 @@ const confirmAccount = async (req: Request, res: Response) => {
 const forgotPassword = async (req: Request, res: Response) => {
     try {
         const { email } = req.body;
+        console.log(req.body);
         const user = await User.findOne({ email });
         if (!user) return sendResponse(res, 'UNEXISTENT_USER', 401);
-
         user.token = uuid();
         user.expires = Date.now() + 3600000;
         await user.save();
         await sendMail(resetPasswordEmailTemplate(user));
 
-        return sendResponse(res, 'USER_FORGOT_PASSWORD_SUCCESS', 200);
+        return sendResponse(res, 'FORGOT_PASSWORD_SUCCESS', 200);
     } catch (error: any) {
-        return sendResponse(res, 'USER_FORGOT_PASSWORD_ERROR', 500, { data: error });
+        return sendResponse(res, 'FORGOT_PASSWORD_ERROR', 500, { data: error });
     }
 };
 
-const resetPassword = async (req: Request, res: Response) => {};
+const resetPassword = async (req: Request, res: Response) => {
+    try {
+        const { token, password } = req.body;
+        const user = await User.findOne({ token });
+        console.log(req.body);
+        if (!user) return sendResponse(res, 'RESET_PASSWORD_EXPIRED', 401);
+        if (user.expires && user.expires < Date.now()) return sendResponse(res, 'RESET_PASSWORD_EXPIRED', 401);
+
+        user.password = await bcrypt.hash(password, SALT_ROUNDS);
+        user.token = '';
+        user.expires = 0;
+
+        await user.save();
+
+        return sendResponse(res, 'RESET_PASSWORD_SUCCESS', 200);
+    } catch (error: any) {
+        return sendResponse(res, 'RESET_PASSWORD_ERROR', 500, { data: error });
+    }
+};
 
 export default { validateToken, register, login, forgotPassword, resetPassword, confirmAccount };
