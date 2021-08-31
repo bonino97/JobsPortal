@@ -15,7 +15,7 @@ export default interface IUser extends Document {
     profileUrl?: string;
     image?: string;
     token?: string;
-    expires?: Date;
+    expires?: number;
     createdAt?: Date;
     updatedAt?: Date;
     isActive?: boolean;

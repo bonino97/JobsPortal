@@ -12,6 +12,9 @@ import IUser from '../interfaces/user';
 import sendMail from '../helpers/email';
 import { registerEmailTemplate } from '../handlers/registerEmailTemplate';
 
+import { v4 as uuid } from 'uuid';
+import { resetPasswordEmailTemplate } from '../handlers/resetPasswordEmailTemplate';
+
 const NAMESPACE = 'Auth Controller';
 
 const validateToken = (req: Request, res: Response, next: NextFunction) => {
@@ -35,7 +38,7 @@ const register = async (req: Request, res: Response) => {
             lastName,
             isActive: false
         });
-        sendMail(registerEmailTemplate(user));
+        await sendMail(registerEmailTemplate(user));
 
         return user
             .save()
@@ -80,7 +83,22 @@ const confirmAccount = async (req: Request, res: Response) => {
     }
 };
 
-const forgotPassword = async (req: Request, res: Response) => {};
+const forgotPassword = async (req: Request, res: Response) => {
+    try {
+        const { email } = req.body;
+        const user = await User.findOne({ email });
+        if (!user) return sendResponse(res, 'UNEXISTENT_USER', 401);
+
+        user.token = uuid();
+        user.expires = Date.now() + 3600000;
+        await user.save();
+        await sendMail(resetPasswordEmailTemplate(user));
+
+        return sendResponse(res, 'USER_FORGOT_PASSWORD_SUCCESS', 200);
+    } catch (error: any) {
+        return sendResponse(res, 'USER_FORGOT_PASSWORD_ERROR', 500, { data: error });
+    }
+};
 
 const resetPassword = async (req: Request, res: Response) => {};
 

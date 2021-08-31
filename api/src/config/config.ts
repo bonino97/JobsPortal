@@ -46,10 +46,10 @@ const SERVER = {
 };
 
 const EMAIL_CONFIG = {
-    user: "a9c799cf681af1",
-    pass: "bc8a20269d161e",
-    host: 'smtp.mailtrap.io',
-    port: '2525'
+    user: process.env.EMAIL_USER || 'a9c799cf681af1',
+    pass: process.env.EMAIL_PASS || 'bc8a20269d161e',
+    host: process.env.EMAIL_HOST || 'smtp.mailtrap.io',
+    port: process.env.EMAIL_PORT || '2525'
 };
 
 const config = {

@@ -26,7 +26,7 @@ const UserSchema: Schema = new Schema(
         profileUrl: String,
         image: String,
         token: String,
-        expires: Date,
+        expires: Number,
         isActive: Boolean
     },
     {
