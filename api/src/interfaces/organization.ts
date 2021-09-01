@@ -1,8 +1,6 @@
 import { Document } from 'mongoose';
 
 export default interface IOrganization extends Document {
-    email: string;
-    password: string;
     organizationName: string;
     aboutOrganization?: string;
     country?: string;
@@ -12,9 +10,6 @@ export default interface IOrganization extends Document {
     website?: string;
     organizationUrl?: string;
     image?: string;
-    token?: string;
-    expires?: number;
     createdAt?: Date;
     updatedAt?: Date;
-    isActive?: boolean;
 }

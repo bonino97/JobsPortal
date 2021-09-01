@@ -4,18 +4,6 @@ import IOrganization from '../interfaces/organization';
 
 const OrganizationSchema: Schema = new Schema(
     {
-        email: {
-            type: String,
-            required: 'Email required.',
-            trim: true,
-            unique: true,
-            lowercase: true
-        },
-        password: {
-            type: String,
-            required: 'Password required.',
-            trim: true
-        },
         organizationName: {
             type: String,
             required: 'Organization Name required.',
@@ -52,13 +40,7 @@ const OrganizationSchema: Schema = new Schema(
         image: {
             type: String,
             trim: true
-        },
-        token: {
-            type: String,
-            trim: true
-        },
-        expires: Number,
-        isActive: Boolean
+        }
     },
     {
         timestamps: true
