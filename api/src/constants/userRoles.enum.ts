@@ -1,0 +1,6 @@
+export enum UserRoles {
+    ORGANIZATION = 'ORGANIZATION',
+    RECRUITER = 'RECRUITER',
+    CANDIDATE = 'CANDIDATE',
+    HIRED = 'HIRED'
+}
